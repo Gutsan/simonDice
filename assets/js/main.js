@@ -1,11 +1,8 @@
 
 // numero random entre 0 y X-1
-const numRandom = (x = 0) => {
-    num = Math.random() * 10
+const numRandom = (max = 0) => {
+    num = Math.random() * max
     num = Math.floor(num)
-    if (num > x) {
-        numRandom()
-    }
     return num
 }
 
@@ -52,8 +49,9 @@ generateSequence = (userNum) => {
 let userSequence = []
 let sequence = []
 let gamePlay = false
-let resultado=false
+let resultado = false
 
+//Mostrar Secuencia en pantalla
 runSequence = (level) => {
     sequence = generateSequence(level)
     for (let i = 0; i < sequence.length; i++) {
@@ -64,9 +62,28 @@ runSequence = (level) => {
     }
     return sequence
 }
+passedLevel = () => {
+    document.getElementById("userMenssage").innerHTML = "CORRECTO!"
+    document.getElementById("runGame").innerHTML = "SIGUIENTE"
+    document.getElementById("levelGame").innerHTML = Number(document.getElementById("levelGame").innerHTML) + 1
+    cleanSequence()
+    gamePlay = false
+}
 
+failedLevel = () => {
+    document.getElementById("userMenssage").innerHTML = "F"
+    document.getElementById("runGame").innerHTML = "REINICIAR"
+    document.getElementById("levelGame").innerHTML = 1
+    cleanSequence()
+    gamePlay = false
+}
 
-//Evento keydown User
+cleanSequence = () => {
+    userSequence = []
+    sequence = []
+}
+
+//Eventos
 
 
 //Volver a color original
@@ -80,25 +97,24 @@ document.addEventListener("keydown", function (event) {
         paintBackground("boxSimonSay", userColor)
         userSequence.push(userColor)
     }
-    if(gamePlay && userSequence.length === sequence.length){
+    if (gamePlay && userSequence.length === sequence.length) {
         for (let i = 0; i < sequence.length; i++) {
-            if(colors[sequence[i]]===userSequence[i]){
-                resultado=true
+            console.log(colors[sequence[i]] + " " + userSequence[i])
+            console.log(colors[sequence[i]]!=userSequence[i])
+            if (colors[sequence[i]]!=userSequence[i]){
+                failedLevel()
+                // break
+                return
             }
         }
-        
-        if (resultado){
-            document.getElementById("userMenssage").innerHTML="CORRECTO!"
-            document.getElementById("runGame").innerHTML="Siguiente"
-            document.getElementById("levelGame").innerHTML=Number(document.getElementById("levelGame").innerHTML)+1
-            gamePlay=false
-        }
+        passedLevel()
     }
 })
 
+
 //Evento al presionarl comenzar
 document.getElementById("runGame").addEventListener("click", function () {
-    document.getElementById("userMenssage").innerHTML="VAMOS!"
+    document.getElementById("userMenssage").innerHTML = "VAMOS!"
     let userLevel = Number(document.getElementById("levelGame").innerHTML)
     sequence = runSequence(userLevel)
     gamePlay = true

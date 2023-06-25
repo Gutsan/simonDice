@@ -1,8 +1,8 @@
 :root{
     --color1:red;
-    --color2:blue;
+    --color2:#482092;
     --color3: yellow;
-    --color4: green;
+    --color4: #ff2aad;
 }
 body{
     width: 100vw;
@@ -35,6 +35,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+.info p{
+    font-size: 50px;
 }
 .controls{
     width: 98vw;
@@ -85,4 +88,7 @@ body{
     bottom: 0%;
     right:0%;
     background-color: var(--color4);
+}
+#runGame{
+    height: 50px;
 }
