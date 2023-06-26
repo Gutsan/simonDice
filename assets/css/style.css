@@ -1,48 +1,110 @@
+*{
+padding: 0;
+margin: 0;
+}
+@font-face {
+    font-family: "fuenteN1";
+    src: url(../font/04B_30__.TTF);
+}
 :root{
-    --color1:red;
-    --color2:#482092;
-    --color3: yellow;
-    --color4: #ff2aad;
+    --color1:linear-gradient(90deg, #c20404,#c20404,#fd4242 ); 
+    --color2:linear-gradient(90deg,#482092,#482092,#8442ff);
+    --color3: linear-gradient(90deg,#c4c422,#c4c422,#696902);
+    --color4: linear-gradient(90deg,#ff2aad,#ff2aad,#8f095c);
+    --gradiente1:linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(183,54,83,1) 100%)
 }
 body{
+    position: relative;
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     row-gap: 2vh;
+    background: rgb(238,174,202);
+    background: linear-gradient(90deg, rgba(238,174,202,1) 0%, rgba(54,114,183,1) 100%);
+    font-family: fuenteN1, system-ui, sans-serif;
 }
+
 .main{
     width: 78vw;
-    height: 59vh;
-    border: solid 1px #000;
-    display: grid;
-    place-content: center;
+    height: 45vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;    
+}
+.infoLevel{
+    display: flex;
     gap: 20px;
+    color: #8f095c;
+}
+header{
+    position: relative;
+    width: 100vw;
+    height: 15vh;
+}
+.titulo{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    font-size: 1.2em;
+    background-image:linear-gradient(45deg,pink,red);
+    background-clip: text ;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke:1px #000000b7;
+}
+.imgLogo{
+    position: absolute;
+    top: 0%;
+    left: 30%;
+    height: 100px;
+    mix-blend-mode: multiply;
 }
 #boxSimonSay{
     width: 200px;
     height: 200px;
     border: dashed 5px #000;
     border-radius: 50px;
+    background: #fff;
     transition: background-color 0.05s linear;
 }
 
 .info{
-    width: 18vw;
-    height: 59vh;
-    border: solid 1px #000;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background-color: #6200ff2c;
+    backdrop-filter: blur(10px);
+    opacity: 100%;
+    transition: opacity 0.3s linear ;
+    color: #410a3e;
 }
 .info p{
     font-size: 50px;
 }
+#runGame{
+
+    height: 50px;
+    width: 200px;
+    border:none;
+    border-radius:50px;
+    background: var(--gradiente1) ;
+    color: #fff;
+    transition: all 0.1s linear;
+}
+#runGame:hover{
+    background: #b73653;
+}
 .controls{
     width: 98vw;
-    height: 38vh;
-    border: solid 1px #000;
+    height: 40vh;
+    
     display: flex;
     justify-content: center;
     align-items: center;
@@ -51,44 +113,50 @@ body{
     position: relative;
     width: 250px;
     height: 150px;
+    
     /* border: solid 1px #000; */
 }
 
 .btn{
     width: 70px;
     height: 70px;
-    border: solid 1px #000;
-    border-radius: 15px;
+    border-radius: 50%;
     font-size: 50px;
+    color: #fff;
     display: grid;
     place-content: center;
     box-shadow: 10px 10px 10px #00000033;
+    transform: rotatex(25deg);
+    transition: all 0.1s linear;    
 }
-#btnColor1{
+.btn:hover{
+    opacity: 90%;
+    color: grey;
+    scale: 1.2;
+}
+#ArrowUp{
     position: absolute;
     top:0%;
     left: 35%;
-    background-color: var(--color1);
+    background: var(--color1);
+    
 }
 
-#btnColor2{
+#ArrowLeft{
     position: absolute;
     bottom: 0%;
     left:0%;
-    background-color: var(--color2);
+    background: var(--color2);
 }
-#btnColor3{
+#ArrowDown{
     position: absolute;
     bottom: 0%;
     left: 35%;
-    background-color: var(--color3);
+    background: var(--color3);
 }
-#btnColor4{
+#ArrowRight{
     position: absolute;
     bottom: 0%;
     right:0%;
-    background-color: var(--color4);
-}
-#runGame{
-    height: 50px;
+    background: var(--color4);
 }

@@ -6,7 +6,7 @@ const numRandom = (max = 0) => {
     return num
 }
 
-
+const containerIformation=document.getElementById("containerInfo")
 
 //Colores simon dice
 let colors = ["var(--color1)", "var(--color2)", "var(--color3)", "var(--color4)"]
@@ -35,7 +35,7 @@ getUserColors = (userKey) => {
 }
 
 //Pintar elemento html
-const paintBackground = (elementId, color) => document.getElementById(elementId).style.backgroundColor = color
+const paintBackground = (elementId, color) => document.getElementById(elementId).style.background = color
 
 //Generador de secuencia entre 0 y 3
 generateSequence = (userNum) => {
@@ -63,59 +63,71 @@ runSequence = (level) => {
     return sequence
 }
 passedLevel = () => {
-    document.getElementById("userMenssage").innerHTML = "CORRECTO!"
+    document.getElementById("userMenssage").innerHTML = "COMPLETE"
     document.getElementById("runGame").innerHTML = "SIGUIENTE"
     document.getElementById("levelGame").innerHTML = Number(document.getElementById("levelGame").innerHTML) + 1
-    cleanSequence()
-    gamePlay = false
+    setTimeout(showInfo, 500)
 }
 
 failedLevel = () => {
-    document.getElementById("userMenssage").innerHTML = "F"
+    document.getElementById("userMenssage").innerHTML = "FAIL"
     document.getElementById("runGame").innerHTML = "REINICIAR"
     document.getElementById("levelGame").innerHTML = 1
+    setTimeout(showInfo, 500)
+    
+}
+
+showInfo=()=>{
+    containerIformation.style.opacity = "100%"
+    containerIformation.style.zIndex="1"
     cleanSequence()
     gamePlay = false
 }
-
 cleanSequence = () => {
     userSequence = []
     sequence = []
 }
 
-//Eventos
-
-
-//Volver a color original
-document.addEventListener("keyup", function (event) {
-    setTimeout(paintBackground, 100, "boxSimonSay", "#FFF")
-})
-
-document.addEventListener("keydown", function (event) {
+executeUserAction=(userAction)=>{
     if (gamePlay && userSequence.length < sequence.length) {
-        let userColor = getUserColors(event.key)
+        let userColor = getUserColors(userAction)
         paintBackground("boxSimonSay", userColor)
         userSequence.push(userColor)
+        setTimeout(paintBackground, 500, "boxSimonSay", "#FFF")
     }
     if (gamePlay && userSequence.length === sequence.length) {
         for (let i = 0; i < sequence.length; i++) {
-            console.log(colors[sequence[i]] + " " + userSequence[i])
-            console.log(colors[sequence[i]]!=userSequence[i])
             if (colors[sequence[i]]!=userSequence[i]){
                 failedLevel()
-                // break
                 return
             }
         }
         passedLevel()
     }
+
+}
+
+//Eventos
+
+document.addEventListener("keydown", function (event) {
+    executeUserAction(event.key)
 })
+
+
 
 
 //Evento al presionarl comenzar
 document.getElementById("runGame").addEventListener("click", function () {
-    document.getElementById("userMenssage").innerHTML = "VAMOS!"
+    containerIformation.style.opacity = "0%"
+    containerIformation.style.zIndex="-1"
     let userLevel = Number(document.getElementById("levelGame").innerHTML)
     sequence = runSequence(userLevel)
     gamePlay = true
 })
+
+
+// document.addEventListener("click",function(event){
+//     console.log(event.id)
+// })
+
+

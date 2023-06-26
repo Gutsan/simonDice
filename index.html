@@ -1,31 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Simon dice</title>
+    <link rel="shortcut icon" href="assets/img/favicon-16x16.png" type="image/x-icon">
+    <title>PATTERNS</title>
 </head>
+
 <body>
+    <header>
+        <img class="imgLogo" src="assets/img/LOGOPATRONES.jpg" alt="">
+        <div class="titulo">
+            <p> PATTERNS </p>
+        </div>
+    </header>
     <section class="main">
-        <h2 id="titulo">SIMON DICE</h2>
+        <div class="infoLevel">
+            <p>NIVEL</p>
+            <p id="levelGame">1</p>
+        </div>
         <div id="boxSimonSay">
         </div>
-        <button id="runGame">COMENZAR</button>
-        <p id="userMenssage"></p>
-    </section>
-    <section class="info">
-        <p>NIVEL</p>
-        <p id="levelGame">1</p>
     </section>
     <section class="controls">
         <div class="btnsControles">
-        <div id="btnColor1" class="btn">⇧</div>
-        <div id="btnColor2" class="btn">⇦</div>
-        <div id="btnColor3" class="btn">⇩</div>
-        <div id="btnColor4" class="btn">⇨</div>
-    </div>
+            <div id="ArrowUp" class="btn" onclick="executeUserAction(id)"><i class="fa-solid fa-arrow-up"></i></div>
+            <div id="ArrowLeft" class="btn" onclick="executeUserAction(id)"><i class="fa-solid fa-arrow-left"></i></div>
+            <div id="ArrowDown" class="btn" onclick="executeUserAction(id)"><i class="fa-solid fa-arrow-down"></i></div>
+            <div id="ArrowRight" class="btn" onclick="executeUserAction(id)"><i class=" fa-solid fa-arrow-right"></i></div>
+        </div>
     </section>
+    <section class="info" id="containerInfo">
+        <!-- <img class="imgLogo" src="assets/img/LOGOPATRONES.jpg" alt=""> -->
+        <p id="userMenssage">HOLA</p>
+        <button id="runGame">COMENZAR</button>
+    </section>
+    <script src="https://kit.fontawesome.com/2227c873c2.js" crossorigin="anonymous"></script>
     <script src="assets/js/main.js"></script>
 </body>
+
 </html>
